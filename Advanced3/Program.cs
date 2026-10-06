@@ -139,6 +139,28 @@
             Console.WriteLine($"Result value: '{result}'");
             Console.WriteLine("Explanation: TryDequeue returns false on an empty queue instead of throwing an Exception.");
             #endregion
+            #region Exercise 6: Browser History (Undo)
+            Stack<string> history = new Stack<string>();
+            history.Push("google.com");
+            history.Push("github.com");
+            history.Push("stackoverflow.com");
+            history.Push("youtube.com");
+            history.Push("claude.ai");
+            string currentPage = history.Peek();
+            Console.WriteLine($"Current page (top of stack): {currentPage}");
+            string leftPage1 = history.Pop();
+            Console.WriteLine($"Leaving: {leftPage1}");
+            string leftPage2 = history.Pop();
+            Console.WriteLine($"Leaving: {leftPage2}");
+            string leftPage3 = history.Pop();
+            Console.WriteLine($"Leaving: {leftPage3}");
+            Console.WriteLine($"Current page after going back 3 times: {history.Peek()}");
+            history.Clear();
+            bool successs = history.TryPop(out string resultt);
+            Console.WriteLine($"Did TryPop succeed? {successs}");
+            Console.WriteLine($"Result value: '{resultt}'");
+            Console.WriteLine("Explanation: TryPop returns false on an empty stack instead of throwing an Exception.");
+            #endregion
         }
     }
 }

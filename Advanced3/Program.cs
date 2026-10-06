@@ -117,6 +117,28 @@
             bool isSub = subSet.IsSubsetOf(setA);
             Console.WriteLine($"Is {{1, 2}} a subset of Set A? {isSub}");
             #endregion
+            #region Exercise 5: Print Queue Simulator
+            Queue<string> printQueue = new Queue<string>();
+            printQueue.Enqueue("Report.pdf");
+            printQueue.Enqueue("Invoice.pdf");
+            printQueue.Enqueue("Letter.docx");
+            printQueue.Enqueue("Resume.pdf");
+            printQueue.Enqueue("Photo.jpg");
+            Console.WriteLine("Queue contents: " + string.Join(", ", printQueue));
+            Console.WriteLine($"Queue Count: {printQueue.Count}");
+            string nextDocument = printQueue.Peek();
+            Console.WriteLine($"Next document to print: {nextDocument}");
+            int count = printQueue.Count;
+            for (int i = 0; i < count; i++)
+            {
+                string currentDoc = printQueue.Dequeue();
+                Console.WriteLine($"Printing: {currentDoc}");
+            }
+            bool success = printQueue.TryDequeue(out string result);
+            Console.WriteLine($"Did TryDequeue succeed? {success}");
+            Console.WriteLine($"Result value: '{result}'");
+            Console.WriteLine("Explanation: TryDequeue returns false on an empty queue instead of throwing an Exception.");
+            #endregion
         }
     }
 }

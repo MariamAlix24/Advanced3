@@ -31,6 +31,42 @@
                 Console.WriteLine(str);
             }
             #endregion
+            #region Exercise 2: Leaderboard
+            Dictionary<int, string> leaderboard = new Dictionary<int, string>
+        {
+            { 500, "Ahmed" },
+            { 200, "Sara" },
+            { 800, "Ali" },
+            { 350, "Mona" }
+        };
+            List<int> sortedScores = new List<int>(leaderboard.Keys);
+            sortedScores.Sort();
+            foreach (int score in sortedScores)
+            {
+                Console.WriteLine($"Score: {score}, Player: {leaderboard[score]}");
+            }
+            int firstKey = sortedScores[0];
+            string firstValue = leaderboard[firstKey];
+            Console.WriteLine($"First Value: {firstValue} with Score: {firstKey}");
+            bool exists = leaderboard.ContainsKey(500);
+            Console.WriteLine($"Does score 500 exist {exists}");
+            if (leaderboard.TryGetValue(999, out string player))
+            {
+                Console.WriteLine($"Player with score 999: {player}");
+            }
+            else
+            {
+                Console.WriteLine("Player with score 999 was not found.");
+            }
+            leaderboard.Remove(200);
+            sortedScores = new List<int>(leaderboard.Keys);
+            sortedScores.Sort();
+            Console.WriteLine("Updated Leaderboard:");
+            foreach (int score in sortedScores)
+            {
+                Console.WriteLine($"Score: {score}, Player: {leaderboard[score]}");
+            }
+            #endregion
         }
     }
 }

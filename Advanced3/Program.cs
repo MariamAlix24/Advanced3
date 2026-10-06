@@ -68,31 +68,54 @@
              }*/
             #endregion
             #region Exercise 3: Phone Book
-            Dictionary<string, string> phoneBook = new Dictionary<string, string>
-        {
-            { "Ahmed", "01011111111" },
-            { "Sara", "01122222222" },
-            { "Ali", "01233333333" },
-            { "Mona", "01544444444" }
-        };
-            phoneBook["Omar"] = "01055555555";
-            try
-            {
-                phoneBook.Add("Ahmed", "01000000000");
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"Error caught: {ex.Message}");
-            }
-            bool isAdded = phoneBook.TryAdd("Ahmed", "01000000000");
-            Console.WriteLine($"Was Ahmed added again? {isAdded}");
-            bool exists = phoneBook.ContainsKey("Hassan");
-            Console.WriteLine($"Does 'Hassan' exist in phone book? {exists}");
-            string searchName = "Hassan";
-            string resultNumber = phoneBook.ContainsKey(searchName) ? phoneBook[searchName] : "Not Found";
-            Console.WriteLine($"Searching for '{searchName}': {resultNumber}");
-            Console.WriteLine("Keys: " + string.Join(", ", phoneBook.Keys));
-            Console.WriteLine("Values: " + string.Join(", ", phoneBook.Values));
+            /*  Dictionary<string, string> phoneBook = new Dictionary<string, string>
+          {
+              { "Ahmed", "01011111111" },
+              { "Sara", "01122222222" },
+              { "Ali", "01233333333" },
+              { "Mona", "01544444444" }
+          };
+              phoneBook["Omar"] = "01055555555";
+              try
+              {
+                  phoneBook.Add("Ahmed", "01000000000");
+              }
+              catch (ArgumentException ex)
+              {
+                  Console.WriteLine($"Error caught: {ex.Message}");
+              }
+              bool isAdded = phoneBook.TryAdd("Ahmed", "01000000000");
+              Console.WriteLine($"Was Ahmed added again? {isAdded}");
+              bool exists = phoneBook.ContainsKey("Hassan");
+              Console.WriteLine($"Does 'Hassan' exist in phone book? {exists}");
+              string searchName = "Hassan";
+              string resultNumber = phoneBook.ContainsKey(searchName) ? phoneBook[searchName] : "Not Found";
+              Console.WriteLine($"Searching for '{searchName}': {resultNumber}");
+              Console.WriteLine("Keys: " + string.Join(", ", phoneBook.Keys));
+              Console.WriteLine("Values: " + string.Join(", ", phoneBook.Values));*/
+            #endregion
+            #region Exercise 4: Unique Email Validator
+            HashSet<string> emails = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            emails.Add("ahmed@test.com");
+            emails.Add("AHMED@test.com");
+            emails.Add("sara@test.com");
+            emails.Add("Sara@Test.Com");
+            Console.WriteLine($"Stored emails count: {emails.Count}");
+            Console.WriteLine("Explanation: The count is 2 because HashSet only stores unique elements, and using StringComparer.OrdinalIgnoreCase makes it treat 'AHMED@test.com' as a duplicate of 'ahmed@test.com'.");
+            HashSet<int> setA = new HashSet<int> { 1, 2, 3, 4, 5 };
+            HashSet<int> setB = new HashSet<int> { 4, 5, 6, 7, 8 };
+            HashSet<int> unionSet = new HashSet<int>(setA);
+            unionSet.UnionWith(setB);
+            Console.WriteLine("UnionWith (A U B): " + string.Join(", ", unionSet));
+            HashSet<int> intersectionSet = new HashSet<int>(setA);
+            intersectionSet.IntersectWith(setB);
+            Console.WriteLine("IntersectWith (A ∩ B): " + string.Join(", ", intersectionSet));
+            HashSet<int> exceptSet = new HashSet<int>(setA);
+            exceptSet.ExceptWith(setB);
+            Console.WriteLine("ExceptWith (A - B): " + string.Join(", ", exceptSet));
+            HashSet<int> subSet = new HashSet<int> { 1, 2 };
+            bool isSub = subSet.IsSubsetOf(setA);
+            Console.WriteLine($"Is {{1, 2}} a subset of Set A? {isSub}");
             #endregion
         }
     }

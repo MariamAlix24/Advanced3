@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             #region Exercise 1: Student Grade Manager
-            List<int> grades = new List<int> { 85, 92, 78, 95, 88, 70, 100, 65 };
+            /*List<int> grades = new List<int> { 85, 92, 78, 95, 88, 70, 100, 65 };
             Console.WriteLine($"All Grades: {string.Join(", ", grades)}");
             Console.WriteLine($"Count: {grades.Count}");
             Console.WriteLine($"First Grade: {grades[0]}");
@@ -29,43 +29,70 @@
             foreach (string str in formattedGrades)
             {
                 Console.WriteLine(str);
-            }
+            }*/
             #endregion
             #region Exercise 2: Leaderboard
-            Dictionary<int, string> leaderboard = new Dictionary<int, string>
+            /* Dictionary<int, string> leaderboard = new Dictionary<int, string>
+         {
+             { 500, "Ahmed" },
+             { 200, "Sara" },
+             { 800, "Ali" },
+             { 350, "Mona" }
+         };
+             List<int> sortedScores = new List<int>(leaderboard.Keys);
+             sortedScores.Sort();
+             foreach (int score in sortedScores)
+             {
+                 Console.WriteLine($"Score: {score}, Player: {leaderboard[score]}");
+             }
+             int firstKey = sortedScores[0];
+             string firstValue = leaderboard[firstKey];
+             Console.WriteLine($"First Value: {firstValue} with Score: {firstKey}");
+             bool exists = leaderboard.ContainsKey(500);
+             Console.WriteLine($"Does score 500 exist {exists}");
+             if (leaderboard.TryGetValue(999, out string player))
+             {
+                 Console.WriteLine($"Player with score 999: {player}");
+             }
+             else
+             {
+                 Console.WriteLine("Player with score 999 was not found.");
+             }
+             leaderboard.Remove(200);
+             sortedScores = new List<int>(leaderboard.Keys);
+             sortedScores.Sort();
+             Console.WriteLine("Updated Leaderboard:");
+             foreach (int score in sortedScores)
+             {
+                 Console.WriteLine($"Score: {score}, Player: {leaderboard[score]}");
+             }*/
+            #endregion
+            #region Exercise 3: Phone Book
+            Dictionary<string, string> phoneBook = new Dictionary<string, string>
         {
-            { 500, "Ahmed" },
-            { 200, "Sara" },
-            { 800, "Ali" },
-            { 350, "Mona" }
+            { "Ahmed", "01011111111" },
+            { "Sara", "01122222222" },
+            { "Ali", "01233333333" },
+            { "Mona", "01544444444" }
         };
-            List<int> sortedScores = new List<int>(leaderboard.Keys);
-            sortedScores.Sort();
-            foreach (int score in sortedScores)
+            phoneBook["Omar"] = "01055555555";
+            try
             {
-                Console.WriteLine($"Score: {score}, Player: {leaderboard[score]}");
+                phoneBook.Add("Ahmed", "01000000000");
             }
-            int firstKey = sortedScores[0];
-            string firstValue = leaderboard[firstKey];
-            Console.WriteLine($"First Value: {firstValue} with Score: {firstKey}");
-            bool exists = leaderboard.ContainsKey(500);
-            Console.WriteLine($"Does score 500 exist {exists}");
-            if (leaderboard.TryGetValue(999, out string player))
+            catch (ArgumentException ex)
             {
-                Console.WriteLine($"Player with score 999: {player}");
+                Console.WriteLine($"Error caught: {ex.Message}");
             }
-            else
-            {
-                Console.WriteLine("Player with score 999 was not found.");
-            }
-            leaderboard.Remove(200);
-            sortedScores = new List<int>(leaderboard.Keys);
-            sortedScores.Sort();
-            Console.WriteLine("Updated Leaderboard:");
-            foreach (int score in sortedScores)
-            {
-                Console.WriteLine($"Score: {score}, Player: {leaderboard[score]}");
-            }
+            bool isAdded = phoneBook.TryAdd("Ahmed", "01000000000");
+            Console.WriteLine($"Was Ahmed added again? {isAdded}");
+            bool exists = phoneBook.ContainsKey("Hassan");
+            Console.WriteLine($"Does 'Hassan' exist in phone book? {exists}");
+            string searchName = "Hassan";
+            string resultNumber = phoneBook.ContainsKey(searchName) ? phoneBook[searchName] : "Not Found";
+            Console.WriteLine($"Searching for '{searchName}': {resultNumber}");
+            Console.WriteLine("Keys: " + string.Join(", ", phoneBook.Keys));
+            Console.WriteLine("Values: " + string.Join(", ", phoneBook.Values));
             #endregion
         }
     }
